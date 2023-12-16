@@ -1,6 +1,7 @@
 import './style.css'
 import * as THREE from "three"
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 const m_scene = new THREE.Scene();
 
@@ -25,8 +26,9 @@ const material = new THREE.MeshStandardMaterial({color: 0xff6347});
 const torus = new THREE.Mesh(geometry, material);
 m_scene.add(torus);
 
+
 //Lights
-const ambientLight = new THREE.AmbientLight(0x000000);
+const ambientLight = new THREE.AmbientLight(0xffffff);
 
 const pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(3, 3, 3);
@@ -36,13 +38,12 @@ m_scene.add(pointLight,ambientLight,directionaltLight);
 
 
 //Helpers
+
 const lightHelper = new THREE.PointLightHelper(pointLight)
 const gridHelper = new THREE.GridHelper(200, 50);
 m_scene.add(lightHelper, gridHelper)
 
 const controls = new OrbitControls(m_camera, m_renderer.domElement);
-
-
 
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
@@ -105,6 +106,25 @@ moon.position.setX(-10);
 mars.position.z = 10;
 mars.position.setX(10);
 
+//Meteor from blender
+let meteor = null;
+const loader = new GLTFLoader();
+loader.load(
+  '/resources/meteor.gltf',
+
+  function ( gltf ) {
+    m_scene.add( gltf.scene );
+    meteor = gltf.scene;
+  },
+
+  function ( xhr ) {
+    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+  },
+
+  function ( error ) {
+    console.log( 'An error happened' );
+  }
+);
 
 
 function moveCamera() {
@@ -133,6 +153,18 @@ function animate() {
 
   moon.rotation.x += 0.005;
   mars.rotation.x += 0.05;
+
+  meteor.position.x += 0.05;
+  meteor.position.y += 0.1;
+  meteor.position.z += 0.05;
+  meteor.rotation.y += 0.03;
+
+  if (meteor.position.x > 10 || meteor.position.y > 10 || meteor.position.z > 10) {
+    // Reset position to the other side
+    meteor.position.x = -10;
+    meteor.position.y = -10;
+    meteor.position.z = -10;
+  }
 
   controls.update();
 
