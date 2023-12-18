@@ -9,9 +9,19 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "tailwindcss": "^3.3.6",
     "vite": "^5.0.8"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
+    "@react-three/drei": "^9.92.4",
+    "@react-three/fiber": "^8.15.12",
+    "@vitejs/plugin-react": "^4.2.1",
+    "framer-motion": "^10.16.16",
+    "maath": "^0.10.7",
+    "react-router-dom": "^6.21.0",
+    "react-tilt": "^1.0.2",
+    "react-vertical-timeline-component": "^3.6.0",
     "three": "^0.159.0"
   }
 }
