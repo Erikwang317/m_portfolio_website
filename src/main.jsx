@@ -18,43 +18,43 @@ import App from './app';
 //   </React.StrictMode>
 // );
 
-const threeJsContainer = document.querySelector('#threejs-root');
-const reactContainer = document.getElementById('react-root');
+// const threeJsContainer = document.querySelector('#threejs-root');
+// const reactContainer = document.getElementById('react-root');
 
-const m_scene = new THREE.Scene();
+// const m_scene = new THREE.Scene();
 
-var view = 75;
-var m_aspect = window.innerWidth / window.innerHeight;
-var nearPlane = 0.1; 
-var farPlane = 1000; 
-const m_camera = new THREE.PerspectiveCamera(view, m_aspect, nearPlane, farPlane);
+// var view = 75;
+// var m_aspect = window.innerWidth / window.innerHeight;
+// var nearPlane = 0.1; 
+// var farPlane = 1000; 
+// const m_camera = new THREE.PerspectiveCamera(view, m_aspect, nearPlane, farPlane);
 
-const m_renderer = new THREE.WebGLRenderer({
-  canvas: threeJsContainer.appendChild(document.createElement('canvas')),
-});
+// const m_renderer = new THREE.WebGLRenderer({
+//   canvas: threeJsContainer.appendChild(document.createElement('canvas')),
+// });
 
-m_renderer.setPixelRatio(window.devicePixelRatio);
-m_renderer.setSize(window.innerWidth, window.innerHeight);
+// m_renderer.setPixelRatio(window.devicePixelRatio);
+// m_renderer.setSize(window.innerWidth, window.innerHeight);
 
-m_camera.position.setZ(30);
-m_renderer.render(m_scene, m_camera);
+// m_camera.position.setZ(30);
+// m_renderer.render(m_scene, m_camera);
 
-const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({color: 0xff6347});
-const torus = new THREE.Mesh(geometry, material);
-m_scene.add(torus);
+// const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+// const material = new THREE.MeshStandardMaterial({color: 0xff6347});
+// const torus = new THREE.Mesh(geometry, material);
+// m_scene.add(torus);
 
 
-//Lights
-const ambientLight = new THREE.AmbientLight(0xffffff);
+// //Lights
+// const ambientLight = new THREE.AmbientLight(0xffffff);
 
-const pointLight = new THREE.PointLight(0xffffff);
-pointLight.position.set(3, 3, 3);
+// const pointLight = new THREE.PointLight(0xffffff);
+// pointLight.position.set(3, 3, 3);
 
-const directionaltLight = new THREE.DirectionalLight(0xff4857);
-m_scene.add(pointLight,ambientLight,directionaltLight);
+// const directionaltLight = new THREE.DirectionalLight(0xff4857);
+// m_scene.add(pointLight,ambientLight,directionaltLight);
 
-//Helpers
+// //Helpers
 
 // const lightHelper = new THREE.PointLightHelper(pointLight)
 // const gridHelper = new THREE.GridHelper(200, 50);
@@ -62,169 +62,174 @@ m_scene.add(pointLight,ambientLight,directionaltLight);
 
 // const controls = new OrbitControls(m_camera, m_renderer.domElement);
 
-function addStar() {
-  const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-  const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-  const star = new THREE.Mesh(geometry, material);
+// function addStar() {
+//   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+//   const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+//   const star = new THREE.Mesh(geometry, material);
 
-  const [x, y, z] = Array(3)
-    .fill()
-    .map(() => THREE.MathUtils.randFloatSpread(100));
+//   const [x, y, z] = Array(3)
+//     .fill()
+//     .map(() => THREE.MathUtils.randFloatSpread(100));
 
-  star.position.set(x, y, z);
-  m_scene.add(star);
-}
+//   star.position.set(x, y, z);
+//   m_scene.add(star);
+// }
 
-Array(200).fill().forEach(addStar);
+// Array(200).fill().forEach(addStar);
 
-// Background
-const spaceTexture = new THREE.TextureLoader().load('/src/assets/resources/space.jpg');
-m_scene.background = spaceTexture;
+// // Background
+// const spaceTexture = new THREE.TextureLoader().load('/src/assets/resources/space.jpg');
+// m_scene.background = spaceTexture;
 
-// Avatar
+// // Avatar
 
-const avatarTexture = new THREE.TextureLoader().load('/src/assets/resources/r.png');
+// const avatarTexture = new THREE.TextureLoader().load('/src/assets/resources/r.png');
 
-const avatar = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: avatarTexture }));
+// const avatar = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: avatarTexture }));
 
-m_scene.add(avatar);
+// m_scene.add(avatar);
 
-avatar.position.z = -5;
-avatar.position.x = 2;
+// avatar.position.z = -5;
+// avatar.position.x = 2;
 
-// Moon
+// // Moon
 
-const moonTexture = new THREE.TextureLoader().load('/src/assets/resources/moon.jpg');
-const normalTexture = new THREE.TextureLoader().load('/src/assets/resources/normal.jpg');
+// const moonTexture = new THREE.TextureLoader().load('/src/assets/resources/moon.jpg');
+// const normalTexture = new THREE.TextureLoader().load('/src/assets/resources/normal.jpg');
 
-const moon = new THREE.Mesh(
-  new THREE.SphereGeometry(1, 32, 32),
-  new THREE.MeshStandardMaterial({
-    map: moonTexture,
-    normalMap: normalTexture,
-  })
-);
+// const moon = new THREE.Mesh(
+//   new THREE.SphereGeometry(1, 32, 32),
+//   new THREE.MeshStandardMaterial({
+//     map: moonTexture,
+//     normalMap: normalTexture,
+//   })
+// );
 
-const marsTexture = new THREE.TextureLoader().load('/src/assets/resources/marsTexture.png');
-const mars = new THREE.Mesh(
-  new THREE.SphereGeometry(3, 32, 32),
-  new THREE.MeshStandardMaterial({
-    map: marsTexture,
-    normalMap: normalTexture,
-  })
-);
+// const marsTexture = new THREE.TextureLoader().load('/src/assets/resources/marsTexture.png');
+// const mars = new THREE.Mesh(
+//   new THREE.SphereGeometry(3, 32, 32),
+//   new THREE.MeshStandardMaterial({
+//     map: marsTexture,
+//     normalMap: normalTexture,
+//   })
+// );
 
-m_scene.add(moon);
-m_scene.add(mars);
+// m_scene.add(moon);
+// m_scene.add(mars);
 
-moon.position.z = 30;
-moon.position.setX(-10);
+// moon.position.z = 30;
+// moon.position.setX(-10);
 
-mars.position.z = 15;
-mars.position.setX(15);
+// mars.position.z = 15;
+// mars.position.setX(15);
 
-//Meteor from blender
-let meteor = null;
-const loader = new GLTFLoader();
-loader.load(
-  '/src/assets/resources/meteor.gltf',
+// //Meteor from blender
+// let meteor = null;
+// const loader = new GLTFLoader();
+// loader.load(
+//   '/src/assets/resources/meteor.gltf',
 
-  function ( gltf ) {
-    m_scene.add( gltf.scene );
-    meteor = gltf.scene;
-  },
+//   function ( gltf ) {
+//     m_scene.add( gltf.scene );
+//     meteor = gltf.scene;
+//   },
 
-  function ( xhr ) {
-    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-  },
+//   function ( xhr ) {
+//     console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+//   },
 
-  function ( error ) {
-    console.log( 'An error happened' );
-  }
-);
+//   function ( error ) {
+//     console.log( 'An error happened loading the meteor' );
+//   }
+// );
+
+// let galaxy = null;
+// loader.load(
+//   './galaxy/scene.gltf',
+
+//   function ( gltf ) {
+//     m_scene.add( gltf.scene );
+//     galaxy = gltf.scene;
+//   },
+
+//   function ( xhr ) {
+//     console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+//   },
+
+//   function ( error ) {
+//     console.log( 'An error happened loading the galaxy', error );
+//   }
+// );
+
+// if(galaxy){
+//   galaxy.setX(0);
+//   galaxy.setY(0);
+//   galaxy.setZ(0);
+// }
+
+// function moveCamera() {
+//   const t = document.body.getBoundingClientRect().top;
+//   moon.rotation.x += 0.05;
+//   moon.rotation.y += 0.075;
+//   moon.rotation.z += 0.05;
+
+//   avatar.rotation.y += 0.01;
+//   avatar.rotation.z += 0.01;
+
+//   m_camera.position.z = t * -0.01;
+//   m_camera.position.x = t * -0.0002;
+//   m_camera.rotation.y = t * -0.0002;
+// }
+
+// document.body.onscroll = moveCamera;
+// //moveCamera();
+
+// function animate() {
+//   requestAnimationFrame(animate);
+
+//   torus.rotation.x += 0.01;
+//   torus.rotation.y += 0.005;
+//   torus.rotation.z += 0.01;
+
+//   moon.rotation.x += 0.005;
+//   mars.rotation.x += 0.02;
+
+//   if(meteor) {
+//     meteor.position.x += 0.05;
+//     meteor.position.y += 0.1;
+//     meteor.position.z += 0.05;
+//     meteor.rotation.y += 0.03;
+//   }
+
+//   if (meteor && (meteor.position.x > 10 || meteor.position.y > 10 || meteor.position.z > 10)) {
+//     // Reset position to the other side
+//     meteor.position.x = -10;
+//     meteor.position.y = -10;
+//     meteor.position.z = -10;
+//   }
+//   //controls.update();
 
 
-function moveCamera() {
-  const t = document.body.getBoundingClientRect().top;
-  moon.rotation.x += 0.05;
-  moon.rotation.y += 0.075;
-  moon.rotation.z += 0.05;
+//   m_renderer.render(m_scene, m_camera);
+// }
 
-  avatar.rotation.y += 0.01;
-  avatar.rotation.z += 0.01;
+// animate();
 
-  m_camera.position.z = t * -0.01;
-  m_camera.position.x = t * -0.0002;
-  m_camera.rotation.y = t * -0.0002;
-}
+// document.getElementById('playButton').addEventListener('click', function() {
+//   document.getElementById('cornfield').play();
+// });
 
-document.body.onscroll = moveCamera;
-//moveCamera();
-
-function animate() {
-  requestAnimationFrame(animate);
-
-  torus.rotation.x += 0.01;
-  torus.rotation.y += 0.005;
-  torus.rotation.z += 0.01;
-
-  moon.rotation.x += 0.005;
-  mars.rotation.x += 0.02;
-
-  if(meteor) {
-    meteor.position.x += 0.05;
-    meteor.position.y += 0.1;
-    meteor.position.z += 0.05;
-    meteor.rotation.y += 0.03;
-  }
-
-  if (meteor && (meteor.position.x > 10 || meteor.position.y > 10 || meteor.position.z > 10)) {
-    // Reset position to the other side
-    meteor.position.x = -10;
-    meteor.position.y = -10;
-    meteor.position.z = -10;
-  }
-  //controls.update();
+// const reactRoot = ReactDOM.createRoot(reactContainer);
+// reactRoot.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
 
 
-  m_renderer.render(m_scene, m_camera);
-}
-
-animate();
-
-document.getElementById('playButton').addEventListener('click', function() {
-  document.getElementById('myAudio').play();
-});
-
-const reactRoot = ReactDOM.createRoot(reactContainer);
-reactRoot.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
-
-
-
-// import javascriptLogo from './javascript.svg'
-// import viteLogo from '/vite.svg'
-// import { setupCounter } from './counter.js'
-
-// document.querySelector('#app').innerHTML = `
-//   <div>
-//     <a href="https://vitejs.dev" target="_blank">
-//       <img src="${viteLogo}" class="logo" alt="Vite logo" />
-//     </a>
-//     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-//       <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-//     </a>
-//     <h1>Hello Vite!</h1>
-//     <div class="card">
-//       <button id="counter" type="button"></button>
-//     </div>
-//     <p class="read-the-docs">
-//       Click on the Vite logo to learn more
-//     </p>
-//   </div>
-// `
-
-// setupCounter(document.querySelector('#counter'))

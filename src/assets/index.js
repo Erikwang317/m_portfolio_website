@@ -25,6 +25,13 @@ import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
+import isolvrisk from "./company/iSolvRisk.png";
+import amino from "./company/amino.png";
+import hoperun from "./company/hoperun.png";
+
+import brown from "./school/brown.png";
+import colgate from "./school/colgate.png";
+import wardlaw from "./school/wardlaw.png";
 
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
@@ -56,6 +63,12 @@ export {
   shopify,
   starbucks,
   tesla,
+  isolvrisk,
+  amino,
+  hoperun,
+  brown,
+  colgate,
+  wardlaw,
   carrent,
   jobit,
   tripguide,

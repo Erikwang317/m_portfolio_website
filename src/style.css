@@ -4,15 +4,15 @@ canvas {
   left: 0;
 }
 
-#myCanvas {
+/* #myCanvas {
   position: absolute;
-  z-index: 1; /* Behind the content */
+  z-index: 1; 
 }
 
 .htmlContent {
   position: relative;
-  z-index: 2; /* Above the canvas */
-}
+  z-index: 2; 
+} */
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

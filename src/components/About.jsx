@@ -1,5 +1,5 @@
 import React from "react";
-import * as Tilt from 'react-tilt';
+import { Tilt } from 'react-tilt';
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
@@ -36,6 +36,7 @@ const ServiceCard = ({ index, title, icon }) => (
 );
 
 const About = () => {
+  // console.log('About component is rendering'); 
   return (
     <>
       <motion.div variants={textVariant()}>
@@ -64,3 +65,4 @@ const About = () => {
 };
 
 export default SectionWrapper(About, "about");
+//export default About;
