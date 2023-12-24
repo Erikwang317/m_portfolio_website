@@ -7,6 +7,7 @@ import {
     typescript,
     html,
     css,
+    python,
     reactjs,
     redux,
     tailwind,
@@ -15,6 +16,8 @@ import {
     git,
     figma,
     docker,
+    java,
+    c_plus_plus,
     meta,
     starbucks,
     tesla,
@@ -86,22 +89,22 @@ import {
       name: "React JS",
       icon: reactjs,
     },
-    {
-      name: "Redux Toolkit",
-      icon: redux,
-    },
+    // {
+    //   name: "Redux Toolkit",
+    //   icon: redux,
+    // },
     {
       name: "Tailwind CSS",
       icon: tailwind,
     },
-    {
-      name: "Node JS",
-      icon: nodejs,
-    },
-    {
-      name: "MongoDB",
-      icon: mongodb,
-    },
+    // {
+    //   name: "Node JS",
+    //   icon: nodejs,
+    // },
+    // {
+    //   name: "MongoDB",
+    //   icon: mongodb,
+    // },
     {
       name: "Three JS",
       icon: threejs,
@@ -114,9 +117,21 @@ import {
       name: "figma",
       icon: figma,
     },
+    // {
+    //   name: "docker",
+    //   icon: docker,
+    // },
     {
-      name: "docker",
-      icon: docker,
+      name: "java",
+      icon: java,
+    },
+    {
+      name: "Python",
+      icon: python,
+    },
+    {
+      name: "C++",
+      icon: c_plus_plus,
     },
   ];
 
@@ -231,46 +246,46 @@ import {
   
   const projects = [
     {
-      name: "Car Rent",
+      name: "Particle System",
       description:
         "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
       tags: [
         {
-          name: "react",
+          name: "c++",
           color: "blue-text-gradient",
         },
         {
-          name: "mongodb",
+          name: "OpenGL",
           color: "green-text-gradient",
         },
         {
-          name: "tailwind",
+          name: "OpenCL",
           color: "pink-text-gradient",
         },
       ],
       image: carrent,
-      source_code_link: "https://github.com/",
+      source_code_link: "https://github.com/Erikwang317/CSCI1230_Final_Project",
     },
     {
-      name: "Job IT",
+      name: "News Analysis",
       description:
         "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
       tags: [
         {
-          name: "react",
+          name: "HTML",
           color: "blue-text-gradient",
         },
         {
-          name: "restapi",
+          name: "Python",
           color: "green-text-gradient",
         },
-        {
-          name: "scss",
-          color: "pink-text-gradient",
-        },
+        // {
+        //   name: "scss",
+        //   color: "pink-text-gradient",
+        // },
       ],
       image: jobit,
-      source_code_link: "https://github.com/",
+      source_code_link: "https://github.com/Erikwang317/ARM_NewsAnalysis",
     },
     {
       name: "Trip Guide",

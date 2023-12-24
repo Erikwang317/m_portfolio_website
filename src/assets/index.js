@@ -20,6 +20,9 @@ import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import threejs from "./tech/threejs.svg";
+import java from "./tech/java.png";
+import python from "./tech/python.png";
+import c_plus_plus from "./tech/c_plus_plus.png";
 
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
@@ -37,6 +40,12 @@ import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 
+import moon from "./resources/moon.png";
+import normal from "./resources/normal.png";
+import mars from "./resources/mars.png";
+import meteor from "./resources/meteor.png";
+import galaxy_texture from "./resources/galaxy_texture.png";
+
 export {
   logo,
   backend,
@@ -52,6 +61,9 @@ export {
   git,
   html,
   javascript,
+  java,
+  python,
+  c_plus_plus,
   mongodb,
   nodejs,
   reactjs,
@@ -72,4 +84,9 @@ export {
   carrent,
   jobit,
   tripguide,
+  moon,
+  normal,
+  mars,
+  meteor,
+  galaxy_texture,
 };

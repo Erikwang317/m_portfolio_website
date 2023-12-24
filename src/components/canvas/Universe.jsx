@@ -1,12 +1,31 @@
-import React, { useState, useRef, Suspense } from "react";
+import React, { useState, useRef, Suspense, useEffect, memo } from "react";
 import * as THREE from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
 import CanvasLoader from "../Loader";
-import { Points, PointMaterial, Preload, useGLTF, useTexture } from "@react-three/drei";
+import { Points, PointMaterial, Preload, useGLTF, useTexture, OrbitControls } from "@react-three/drei";
+import { moon, normal, mars, meteor, galaxy_texture } from "../../assets"; 
 
-const Moon = (isMobile) => {
-  const moonTexture = new THREE.TextureLoader().load('../assets/resources/moon.jpg');
-  const normalTexture = new THREE.TextureLoader().load('./assets/resources/normal.jpg');
+const Moon = () => {
+  const moonTexture = new THREE.TextureLoader().load(
+    moon,
+    () => {
+      console.log("Moon Texture Loaded Successfully");
+    },
+    undefined,
+    (err) => {
+      console.error("Error loading moon texture:", err);
+    }
+  );
+  const normalTexture = new THREE.TextureLoader().load(
+    normal,
+    () => {
+      console.log("Moon normal Loaded Successfully");
+    },
+    undefined,
+    (err) => {
+      console.error("Error loading moon normal:", err);
+    }
+  );
 
   const moonGeometry = new THREE.SphereGeometry(1, 32, 32);
   const moonMaterial = new THREE.MeshStandardMaterial({
@@ -14,12 +33,24 @@ const Moon = (isMobile) => {
     normalMap: normalTexture
   });
 
+  const moonRef = useRef();
+
+  useFrame(() => {
+    if (moonRef.current) {
+      moonRef.current.rotation.x += 0.002; // Adjust rotation speed as needed
+      moonRef.current.rotation.y += 0.002;
+    }
+  });
+
+
   return (
-    <mesh>
+    <mesh ref={moonRef}>
       <primitive
         object={new THREE.Mesh(moonGeometry, moonMaterial)} 
-        scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
+        // scale={isMobile ? 0.7 : 0.75}
+        scale={0.75}
+        // position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
+        position={[0, -3.25, -1.5]}
         rotation-x={0.02}
       />
       <hemisphereLight intensity={0.15} groundColor='black' />
@@ -37,8 +68,8 @@ const Moon = (isMobile) => {
 };
 
 const Mars = (isMobile) => {
-  const marsTexture = new THREE.TextureLoader().load('./assets/resources/marsTexture.png');
-  const normalTexture = new THREE.TextureLoader().load('./assets/resources/normal.jpg');
+  const marsTexture = new THREE.TextureLoader().load(mars);
+  const normalTexture = new THREE.TextureLoader().load(normal);
 
   const marsGeometry = new THREE.SphereGeometry(3, 32, 32);
   const marsMaterial = new THREE.MeshStandardMaterial({
@@ -46,13 +77,21 @@ const Mars = (isMobile) => {
     normalMap: normalTexture
   });
 
+  const marsRef = useRef();
+
+  useFrame(() => {
+    if (marsRef.current) {
+      marsRef.current.rotation.x += 0.005; // Adjust rotation speed as needed
+      marsRef.current.rotation.y += 0.005;
+    }
+  });
+
   return (
-    <mesh>
+    <mesh ref={marsRef}>
       <primitive
         object={new THREE.Mesh(marsGeometry, marsMaterial)} 
-        scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
-        rotation={[0.005, 0, 0]}
+        scale={isMobile ? 1.3 : 1.35}
+        position={isMobile ? [-10, -3, -2.2] : [0, -3.25, -1.5]}
       />
       <hemisphereLight intensity={0.15} groundColor='black' />
       <spotLight
@@ -77,14 +116,33 @@ const Torus = () => {
 };
 
 const Meteor = (isMobile) => {
-  const meteor = useGLTF("./meteor/scene.gltf");
-  const texture = useTexture("./meteor/textures/lambert3_baseColor.png");
+  const meteor_obj = useGLTF("./meteor/scene.gltf");
+  const texture = useTexture(meteor);
+
+  const meteorRef = useRef();
+
+  useFrame(() => {
+    if (meteorRef.current) {
+      // meteorRef.current.rotation.x += Math.random()/100; // Adjust rotation speed as needed
+      meteorRef.current.position.x += 0.1;
+      meteorRef.current.rotation.z += 0.03;
+      // meteorRef.current.rotation.z += 0.05;
+
+      const leftBound = -15//-window.innerWidth / 2; // when it goes beyond left screen
+      const rightBound = 15//window.innerWidth / 2; // when it goes beyond right screen
+      // meteorRef.current.rotation.y += Math.random()/100;
+      if (meteorRef.current.position.x > rightBound) {
+        meteorRef.current.position.x = leftBound; // Adjust based on your scene's size
+      }
+    }
+  });
+
   return (
-    <mesh>
+    <mesh ref = {meteorRef}>
       <primitive
-        object={meteor.scene}
+        object={meteor_obj.scene}
         scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
+        position={isMobile ? [3, -3, -2.2] : [0, -3.25, -1.5]}
         rotation={[-0.01, -0.2, -0.1]}
       />
       <meshStandardMaterial map={texture} />
@@ -94,143 +152,106 @@ const Meteor = (isMobile) => {
 
 const Galaxy = (isMobile) => {
   const galaxy = useGLTF("./galaxy/scene.gltf");
+  const texture = useTexture(
+    galaxy_texture,
+    () => {
+      console.log("Galaxy normal Loaded Successfully");
+    },
+    undefined,
+    (err) => {
+      console.error("Error loading galaxy normal:", err);
+  });
+
+  const galaxyRef = useRef();
+
+  useFrame(() => {
+    if (galaxyRef.current) {
+      galaxyRef.current.rotation.x += Math.random()/100; // Adjust rotation speed as needed
+      galaxyRef.current.rotation.y += Math.random()/100;
+      galaxyRef.current.rotation.y += Math.random()/100;
+    }
+  });
+
   return (
-    <mesh>
+    <mesh ref = {galaxyRef}>
       <primitive
         object={galaxy.scene}
-        scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
-        rotation={[-0.01, -0.2, -0.1]}
+        scale={isMobile ? 4 : 5}
+        position={[0, 0, 0]}
       />
+      <meshStandardMaterial map={texture} />
     </mesh>
   );
 };
 
-const Universe = () => {
-  const canvasRef = useRef();
+
+const UniverseCanvas = memo(() => {
+  const cameraRef = useRef();
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    var view = 75;
-    var m_aspect = window.innerWidth / window.innerHeight;
-    var nearPlane = 0.1; 
-    var farPlane = 1000; 
-    const m_scene = new THREE.Scene();
-    const m_camera = new THREE.PerspectiveCamera(view, m_aspect, nearPlane, farPlane);
-    const m_renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    canvasRef.current.appendChild(m_renderer.domElement);
+    // Add a listener for changes to the screen size
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
 
-    // Add your Three.js objects here
-    // const m_renderer = new THREE.WebGLRenderer({
-    // canvas: threeJsContainer.appendChild(document.createElement('canvas')),
-    // });
+    // Set the initial value of the `isMobile` state variable
+    setIsMobile(mediaQuery.matches);
 
-    m_renderer.setPixelRatio(window.devicePixelRatio);
-    m_renderer.setSize(window.innerWidth, window.innerHeight);
+    // Define a callback function to handle changes to the media query
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches);
+    };
 
-    m_camera.position.setZ(30);
-    m_renderer.render(m_scene, m_camera);
+    // Add the callback function as a listener for changes to the media query
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
 
-    const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-    const material = new THREE.MeshStandardMaterial({color: 0xff6347});
-    const torus = new THREE.Mesh(geometry, material);
-    m_scene.add(torus);
-
-
-    //Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff);
-
-    const pointLight = new THREE.PointLight(0xffffff);
-    pointLight.position.set(3, 3, 3);
-
-    const directionaltLight = new THREE.DirectionalLight(0xff4857);
-    m_scene.add(pointLight,ambientLight,directionaltLight);
-
-    //Helpers
-
-    const lightHelper = new THREE.PointLightHelper(pointLight)
-    const gridHelper = new THREE.GridHelper(200, 50);
-    m_scene.add(lightHelper, gridHelper)
-
-    const controls = new OrbitControls(m_camera, m_renderer.domElement);
-
-    function addStar() {
-      const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-      const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-      const star = new THREE.Mesh(geometry, material);
-
-      const [x, y, z] = Array(3)
-      .fill()
-      .map(() => THREE.MathUtils.randFloatSpread(100));
-
-      star.position.set(x, y, z);
-      m_scene.add(star);
+    const handleScroll = () => {
+      const scrollY = window.scrollY; // Current scroll position
+      // Update camera or object position based on scroll
+      if (cameraRef.current) {
+        cameraRef.current.position.z = 60 - scrollY / 10; // Example effect
       }
+    };
 
-    Array(200).fill().forEach(addStar);
+    window.addEventListener('scroll', handleScroll);
 
-    // Background
-    const spaceTexture = new THREE.TextureLoader().load('./assets/resources/space.jpg');
-    m_scene.background = spaceTexture;
-
-    // Avatar
-
-
-    function moveCamera() {
-      const t = document.body.getBoundingClientRect().top;
-      moon.rotation.x += 0.05;
-      moon.rotation.y += 0.075;
-      moon.rotation.z += 0.05;
-
-      avatar.rotation.y += 0.01;
-      avatar.rotation.z += 0.01;
-
-      m_camera.position.z = t * -0.01;
-      m_camera.position.x = t * -0.0002;
-      m_camera.rotation.y = t * -0.0002;
-    }
-
-    document.body.onscroll = moveCamera;
-    //moveCamera();
-
-
-
-    // Handle resize
-    window.addEventListener('resize', () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      renderer.setSize(width, height);
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-    });
-
+    // Remove the listener when the component is unmounted
     return () => {
-      window.removeEventListener('resize', handleResize);
-      canvasRef.current.removeChild(renderer.domElement);
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  return <div ref={canvasRef} />;
-};
-
-const UniverseCanvas = () => {
   return (
-    <div>
-      <Canvas>
+    <div className='w-full h-auto absolute inset-0 z-[-1]'>
+      <Canvas
+        ref={cameraRef}
+        shadows
+        dpr={[1, 2]}
+        camera={{ position: [0, 0, 30], fov: 30 }}
+        gl={{ preserveDrawingBuffer: true }}
+      >
+        
         {/* <Suspense fallback={<CanvasLoader />}> */}
         <Suspense fallback={null}>
-          <OrbitControls enableZoom={false} />
-          <Moon />
-          <Mars />
+          <OrbitControls
+            enableZoom={false}
+            maxPolarAngle={Math.PI / 2}
+            minPolarAngle={Math.PI / 2}
+            maxDistance={150} 
+            minDistance={10}
+
+        />
+          <Moon isMobile={isMobile} />
+          <Mars isMobile={isMobile} />
           <Torus />
-          <Galaxy />
-          <Meteor />
+          <Galaxy isMobile={isMobile}/>
+          <Meteor isMobile={isMobile}/>
         </Suspense>
         
         <Preload all />
       </Canvas>
     </div>
   );
-};
+});
 
 export default UniverseCanvas;
