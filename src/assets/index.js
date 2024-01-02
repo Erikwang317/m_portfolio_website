@@ -45,6 +45,7 @@ import normal from "./resources/normal.png";
 import mars from "./resources/mars.png";
 import meteor from "./resources/meteor.png";
 import galaxy_texture from "./resources/galaxy_texture.png";
+import cornfield from "./resources/cornfield_chase.mp3";
 
 export {
   logo,
@@ -89,4 +90,5 @@ export {
   mars,
   meteor,
   galaxy_texture,
+  cornfield,
 };

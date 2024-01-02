@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import { styles } from "../styles";
 import { navLinks } from "../constants";
-import { logo, menu, close } from "../assets";
+import { logo, menu, close, cornfield } from "../assets";
+import { AudioVisualizer } from './canvas'
+import '../style.css';
+
 
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  
+  const audioRef = useRef(null); // Reference to the audio element
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,6 +54,12 @@ const Navbar = () => {
             <span className='sm:block hidden'> | Personal Porfolio</span>
           </p>
         </Link>
+       
+        <audio ref={audioRef} id="audio-element" preload="auto" className="hidden">
+          <source src={ cornfield } type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+        <AudioVisualizer audioRef={audioRef}/>
 
         <ul className='list-none hidden sm:flex flex-row gap-10'>
           {navLinks.map((nav) => (
@@ -56,7 +67,7 @@ const Navbar = () => {
               key={nav.id}
               className={`${
                 active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
+              } hover:text-white hover:underline text-[18px] font-medium cursor-pointer`}
               onClick={() => setActive(nav.title)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
