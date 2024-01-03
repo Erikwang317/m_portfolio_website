@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import { motion } from "framer-motion";
 import "react-vertical-timeline-component/style.min.css";
@@ -6,9 +6,13 @@ import "react-vertical-timeline-component/style.min.css";
 import { styles } from "../styles";
 import { educations } from "../constants";
 import { SectionWrapper } from "../hoc";
-import { textVariant } from "../utils/motion";
+import { textVariant } from "../utils/motion"
+// import { AudioVisualizer} from './canvas'
+// import { cornfield } from '../assets'
 
 const EducationCard = ({ education }) => {
+    // const audioRef = useRef(null);
+
     return (
       <VerticalTimelineElement
         contentStyle={{
@@ -74,6 +78,12 @@ const Education = () => {
           ))}
         </VerticalTimeline>
       </div>
+      
+      {/* <audio ref={ audioRef } id="audio-element" preload="auto" className="hidden">
+      <source src={ cornfield } type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+      <AudioVisualizer audioRef={audioRef}/> */}
     </>
   );
 };

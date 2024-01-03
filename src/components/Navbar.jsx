@@ -11,8 +11,6 @@ const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
-  
   const audioRef = useRef(null); // Reference to the audio element
 
   useEffect(() => {
@@ -39,7 +37,7 @@ const Navbar = () => {
       }`}
     >
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
-        <Link
+        {/* <Link
           to='/'
           className='flex items-center gap-2'
           onClick={() => {
@@ -47,21 +45,21 @@ const Navbar = () => {
             window.scrollTo(0, 0);
           }}
         >
-          {/* logo */}
-          {/* <img src={logo} alt='logo' className='w-9 h-9 object-contain' /> */}
           <p className='text-white text-[18px] font-bold cursor-pointer flex '>
             Haiyang Wang &nbsp;
             <span className='sm:block hidden'> | Personal Porfolio</span>
           </p>
-        </Link>
-       
-        <audio ref={audioRef} id="audio-element" preload="auto" className="hidden">
-          <source src={ cornfield } type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
-        <AudioVisualizer audioRef={audioRef}/>
+        </Link> */}
+        <div>
+          <audio ref={audioRef} id="audio-element" preload="auto" className="hidden">
+            <source src={ cornfield } type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
 
-        <ul className='list-none hidden sm:flex flex-row gap-10'>
+          <AudioVisualizer audioRef={audioRef} className="flex"/>
+        </div>
+
+        {/* <ul className='list-none hidden sm:flex flex-row gap-10'>
           {navLinks.map((nav) => (
             <li
               key={nav.id}
@@ -105,7 +103,7 @@ const Navbar = () => {
               ))}
             </ul>
           </div>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
