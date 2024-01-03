@@ -5,6 +5,7 @@ import { navLinks } from "../constants";
 import { logo, menu, close, cornfield } from "../assets";
 import { AudioVisualizer } from './canvas'
 import '../style.css';
+import MusicVisualizer from "./canvas/musicVisualizer/MusicVisualizer";
 
 
 const Navbar = () => {
@@ -50,14 +51,15 @@ const Navbar = () => {
             <span className='sm:block hidden'> | Personal Porfolio</span>
           </p>
         </Link> */}
-        <div>
+        {/* <div>
           <audio ref={audioRef} id="audio-element" preload="auto" className="hidden">
             <source src={ cornfield } type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
 
           <AudioVisualizer audioRef={audioRef} className="flex"/>
-        </div>
+        </div> */}
+        <MusicVisualizer />
 
         {/* <ul className='list-none hidden sm:flex flex-row gap-10'>
           {navLinks.map((nav) => (

@@ -5,5 +5,6 @@ import ComputersCanvas from "./Computers";
 import StarsCanvas from "./Stars";
 import UniverseCanvas from "./Universe";
 import AudioVisualizer from "./audio";
+import MusicVisualizer from "./musicVisualizer/MusicVisualizer";
 
-export { EarthCanvas, BallCanvas, ComputersCanvas, StarsCanvas, UniverseCanvas, Ball, AudioVisualizer };
+export { EarthCanvas, BallCanvas, ComputersCanvas, StarsCanvas, UniverseCanvas, Ball, AudioVisualizer, MusicVisualizer };

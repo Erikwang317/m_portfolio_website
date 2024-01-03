@@ -9,7 +9,7 @@ const Moon = () => {
   const moonTexture = new THREE.TextureLoader().load(
     moon,
     () => {
-      console.log("Moon Texture Loaded Successfully");
+      // console.log("Moon Texture Loaded Successfully");
     },
     undefined,
     (err) => {
@@ -19,7 +19,7 @@ const Moon = () => {
   const normalTexture = new THREE.TextureLoader().load(
     normal,
     () => {
-      console.log("Moon normal Loaded Successfully");
+      // console.log("Moon normal Loaded Successfully");
     },
     undefined,
     (err) => {
@@ -155,7 +155,7 @@ const Galaxy = (isMobile) => {
   const texture = useTexture(
     galaxy_texture,
     () => {
-      console.log("Galaxy normal Loaded Successfully");
+      // console.log("Galaxy normal Loaded Successfully");
     },
     undefined,
     (err) => {
