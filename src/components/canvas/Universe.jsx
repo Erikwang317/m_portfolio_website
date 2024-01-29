@@ -5,35 +5,26 @@ import CanvasLoader from "../Loader";
 import { Points, PointMaterial, Preload, useGLTF, useTexture, OrbitControls } from "@react-three/drei";
 import { moon, normal, mars, meteor, galaxy_texture } from "../../assets"; 
 
-const Moon = () => {
-  const moonTexture = new THREE.TextureLoader().load(
-    moon,
-    () => {
-      // console.log("Moon Texture Loaded Successfully");
-    },
-    undefined,
-    (err) => {
-      console.error("Error loading moon texture:", err);
-    }
-  );
-  const normalTexture = new THREE.TextureLoader().load(
-    normal,
-    () => {
-      // console.log("Moon normal Loaded Successfully");
-    },
-    undefined,
-    (err) => {
-      console.error("Error loading moon normal:", err);
-    }
-  );
-
-  const moonGeometry = new THREE.SphereGeometry(1, 32, 32);
-  const moonMaterial = new THREE.MeshStandardMaterial({
-    map: moonTexture,
-    normalMap: normalTexture
-  });
-
+const Moon = memo(({textures}) => {
   const moonRef = useRef();
+  const [moonMesh, setMoonMesh] = useState();
+
+  useEffect(() => {
+    if (textures.moon && textures.normal) {
+      const moonGeometry = new THREE.SphereGeometry(1, 32, 32);
+      const moonMaterial = new THREE.MeshStandardMaterial({
+        map: textures.moon,
+        normalMap: textures.normal
+      });
+
+      setMoonMesh(new THREE.Mesh(moonGeometry, moonMaterial)); // Initialize mesh
+
+      return () => {
+        moonGeometry.dispose();
+        moonMaterial.dispose();
+      };
+    }
+  }, []);
 
   useFrame(() => {
     if (moonRef.current) {
@@ -42,17 +33,16 @@ const Moon = () => {
     }
   });
 
-
   return (
     <mesh ref={moonRef}>
-      <primitive
-        object={new THREE.Mesh(moonGeometry, moonMaterial)} 
-        // scale={isMobile ? 0.7 : 0.75}
-        scale={0.75}
-        // position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
-        position={[0, -3.25, -1.5]}
-        rotation-x={0.02}
-      />
+      {moonMesh && (
+        <primitive
+          object={moonMesh}
+          scale={0.75}
+          position={[0, -3.25, -1.5]}
+          rotation-x={0.02}
+        />
+      )}
       <hemisphereLight intensity={0.15} groundColor='black' />
       <spotLight
         position={[-20, 50, 10]}
@@ -65,19 +55,27 @@ const Moon = () => {
       <pointLight intensity={1} />
     </mesh>
   );
-};
+});
 
-const Mars = (isMobile) => {
-  const marsTexture = new THREE.TextureLoader().load(mars);
-  const normalTexture = new THREE.TextureLoader().load(normal);
-
-  const marsGeometry = new THREE.SphereGeometry(3, 32, 32);
-  const marsMaterial = new THREE.MeshStandardMaterial({
-    map: marsTexture,
-    normalMap: normalTexture
-  });
-
+const Mars =  memo(({isMobile, textures}) => {
   const marsRef = useRef();
+  const [marsMesh, setMarsMesh] = useState();
+
+  useEffect(() => {
+    if (textures.mars && textures.normal) {
+      const marsGeometry = new THREE.SphereGeometry(3, 32, 32);
+      const marsMaterial = new THREE.MeshStandardMaterial({
+        map: textures.mars,
+        normalMap: textures.normal
+      });
+      setMarsMesh(new THREE.Mesh(marsGeometry, marsMaterial));
+
+      return () => {
+        marsGeometry.dispose();
+        marsMaterial.dispose();
+      };
+    }
+  }, []);
 
   useFrame(() => {
     if (marsRef.current) {
@@ -88,11 +86,13 @@ const Mars = (isMobile) => {
 
   return (
     <mesh ref={marsRef}>
-      <primitive
-        object={new THREE.Mesh(marsGeometry, marsMaterial)} 
-        scale={isMobile ? 1.3 : 1.35}
-        position={isMobile ? [-10, -3, -2.2] : [0, -3.25, -1.5]}
-      />
+      {marsMesh && (
+        <primitive
+          object={marsMesh} 
+          scale={isMobile ? 0.8 : 0.85}
+          position={isMobile ? [-10, -3, -2.2] : [0, -3.25, -1.5]}
+        />
+      )}
       <hemisphereLight intensity={0.15} groundColor='black' />
       <spotLight
         position={[-10, 10, 30]}
@@ -105,7 +105,7 @@ const Mars = (isMobile) => {
       <pointLight intensity={1} /> 
     </mesh>
   );
-};
+});
 
 const Torus = () => {
   return (
@@ -115,9 +115,9 @@ const Torus = () => {
   );
 };
 
-const Meteor = (isMobile) => {
+const Meteor =  memo(({isMobile, textures}) => {
   const meteor_obj = useGLTF("./meteor/scene.gltf");
-  const texture = useTexture(meteor);
+  const texture = useTexture(textures.meteor);
 
   const meteorRef = useRef();
 
@@ -148,29 +148,21 @@ const Meteor = (isMobile) => {
       <meshStandardMaterial map={texture} />
     </mesh>
   );
-};
+});
 
-const Galaxy = (isMobile) => {
+const Galaxy =  memo(({isMobile}) => {
   const galaxy = useGLTF("./galaxy/scene.gltf");
-  const texture = useTexture(
-    galaxy_texture,
-    () => {
-      // console.log("Galaxy normal Loaded Successfully");
-    },
-    undefined,
-    (err) => {
-      console.error("Error loading galaxy normal:", err);
-  });
+  // const texture = useTexture(textures.galaxy);
 
   const galaxyRef = useRef();
 
-  useFrame(() => {
-    if (galaxyRef.current) {
-      galaxyRef.current.rotation.x += Math.random()/100; // Adjust rotation speed as needed
-      galaxyRef.current.rotation.y += Math.random()/100;
-      galaxyRef.current.rotation.y += Math.random()/100;
-    }
-  });
+  // useFrame(() => {
+  //   if (galaxyRef.current) {
+  //     galaxyRef.current.rotation.x += Math.random()/100; // Adjust rotation speed as needed
+  //     galaxyRef.current.rotation.y += Math.random()/100;
+  //     galaxyRef.current.rotation.y += Math.random()/100;
+  //   }
+  // });
 
   return (
     <mesh ref = {galaxyRef}>
@@ -179,15 +171,16 @@ const Galaxy = (isMobile) => {
         scale={isMobile ? 4 : 5}
         position={[0, 0, 0]}
       />
-      <meshStandardMaterial map={texture} />
+      <meshStandardMaterial/>
     </mesh>
   );
-};
+});
 
 
 const UniverseCanvas = memo(() => {
-  const cameraRef = useRef();
+  // const cameraRef = useRef();
   const [isMobile, setIsMobile] = useState(false);
+  const [textures, setTextures] = useState({});
 
   useEffect(() => {
     // Add a listener for changes to the screen size
@@ -204,52 +197,123 @@ const UniverseCanvas = memo(() => {
     // Add the callback function as a listener for changes to the media query
     mediaQuery.addEventListener("change", handleMediaQueryChange);
 
-    const handleScroll = () => {
-      const scrollY = window.scrollY; // Current scroll position
-      // Update camera or object position based on scroll
-      if (cameraRef.current) {
-        cameraRef.current.position.z = 60 - scrollY / 10; // Example effect
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
     // Remove the listener when the component is unmounted
     return () => {
       mediaQuery.removeEventListener("change", handleMediaQueryChange);
-      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  return (
+  // useEffect(() => {
+  //   // const manager = new THREE.LoadingManager();
+  //   // let loadedTextures = {};
+
+  //   // Set up a loading manager to handle all textures
+  //   // manager.onStart = () => {
+  //   //   console.log('Started loading textures');
+  //   // };
+  //   // manager.onLoad = () => {
+  //   //   console.log('All textures loaded');
+  //   //   setTextures(loadedTextures);
+  //   // };
+  //   // manager.onProgress = function ( url ) {
+  //   //   console.log( 'Loading file: ' + url + '.\nLoaded ' );
+  //   // };
+  //   // manager.onError = (url) => {
+  //   //   console.log('There was an error loading ' + url);
+  //   // };
+
+  //   const loader = new THREE.TextureLoader();
+
+  //   setTextures({ 
+  //     moon: loader.load(moon, (err) => {
+  //       console.log("Error")
+  //     }), 
+  //     mars: loader.load(mars), 
+  //     galaxy: loader.load(galaxy_texture), 
+  //     meteor: loader.load(meteor),
+  //     normal: loader.load(normal)
+  //   });
+  //   // console.log(moon)
+
+  //   // return () => {
+  //   //   loadedTextures.dispose();
+  //   // };
+  // }, []);
+
+  useEffect(() => {
+    const loadTextures = async () => {
+      try {
+        const loader = new THREE.TextureLoader();
+        
+        const moonTex = await loader.load(moon);
+        const marsTex = await loader.load(mars);
+        const meteorTex = await loader.load(moon);
+        const normalTex = await loader.load(moon);
+    
+        setTextures({
+          moon: moonTex,
+          mars: marsTex,
+          // galaxy: galaxyTex,
+          meteor: meteorTex,
+          normal: normalTex
+        });
+      } catch (error) {
+        console.error('An error happened while loading textures', error);
+      }
+    };
+    loadTextures();
+
+    // const loadTexture = (path) => {
+    //   return new Promise((resolve, reject) => {
+    //     loader.load(path, resolve, undefined, reject);
+    //   });
+    // };
+  
+    // Promise.all([
+    //   loadTexture(moon),
+    //   loadTexture(mars),
+    //   // loadTexture(galaxy_texture),
+    //   loadTexture(meteor),
+    //   loadTexture(normal)
+    // ]).then(([moonTex, marsTex, meteorTex, normalTex]) => {
+    //   setTextures({
+    //     moon: moonTex,
+    //     mars: marsTex,
+    //     // galaxy: galaxyTex,
+    //     meteor: meteorTex,
+    //     normal: normalTex
+    //   });
+    // }).catch(error => {
+    //   console.error('An error happened while loading textures', error);
+    // });
+    
+  }, []); 
+  return Object.keys(textures).length === 0? (
+    <div className='text-center z-[-1]'>Loading...</div>
+  ) : (
     <div className='w-full h-auto absolute inset-0 z-[-1]'>
       <Canvas
-        ref={cameraRef}
-        shadows
+        // ref={cameraRef}
+        // shadow
         dpr={[1, 2]}
         camera={{ position: [0, 0, 30], fov: 30 }}
-        gl={{ preserveDrawingBuffer: true }}
+        gl={{ preserveDrawingBuffer: false }}
       >
         
-        {/* <Suspense fallback={<CanvasLoader />}> */}
-        <Suspense fallback={null}>
+        <Suspense fallback={CanvasLoader}>
           <OrbitControls
             enableZoom={false}
-            maxPolarAngle={Math.PI / 2}
-            minPolarAngle={Math.PI / 2}
-            maxDistance={150} 
-            minDistance={10}
-
         />
-          <Moon isMobile={isMobile} />
-          <Mars isMobile={isMobile} />
-          <Torus />
-          <Galaxy isMobile={isMobile}/>
-          <Meteor isMobile={isMobile}/>
+          <Moon isMobile={isMobile} textures={textures}/>
+          <Mars isMobile={isMobile} textures={textures}/>
+          {/* <Torus /> */}
+          {/* <Galaxy isMobile={isMobile}/> */}
+          {/* <Meteor isMobile={isMobile} textures={textures}/> */}
         </Suspense>
         
         <Preload all />
       </Canvas>
+
     </div>
   );
 });

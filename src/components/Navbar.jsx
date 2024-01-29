@@ -38,7 +38,7 @@ const Navbar = () => {
       }`}
     >
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
-        {/* <Link
+        <Link
           to='/'
           className='flex items-center gap-2'
           onClick={() => {
@@ -50,18 +50,11 @@ const Navbar = () => {
             Haiyang Wang &nbsp;
             <span className='sm:block hidden'> | Personal Porfolio</span>
           </p>
-        </Link> */}
-        {/* <div>
-          <audio ref={audioRef} id="audio-element" preload="auto" className="hidden">
-            <source src={ cornfield } type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
+        </Link>
+        
+        {/* <MusicVisualizer /> */}
 
-          <AudioVisualizer audioRef={audioRef} className="flex"/>
-        </div> */}
-        <MusicVisualizer />
-
-        {/* <ul className='list-none hidden sm:flex flex-row gap-10'>
+        <ul className='list-none hidden sm:flex flex-row gap-10'>
           {navLinks.map((nav) => (
             <li
               key={nav.id}
@@ -105,7 +98,7 @@ const Navbar = () => {
               ))}
             </ul>
           </div>
-        </div> */}
+        </div>
       </div>
     </nav>
   );

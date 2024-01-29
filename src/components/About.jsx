@@ -48,11 +48,13 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
       >
-        I'm a skilled software developer with experience in TypeScript and
-        JavaScript, and expertise in frameworks like React, Node.js, and
-        Three.js. I'm a quick learner and collaborate closely with clients to
-        create efficient, scalable, and user-friendly solutions that solve
-        real-world problems. Let's work together to bring your ideas to life!
+        Currently pursuing a Master's degree in Computer Science at Brown University, 
+        I specialize in software engineering with a strong focus on machine learning 
+        and web development, enriched by my background in Economics with Calculus from 
+        Colgate University. My experiences at iSolvRisk and Amino Capital have honed my 
+        skills in algorithm design, data analysis, and developing scalable tech solutions. 
+        I am eager for opportunities to apply my diverse software development skills in 
+        challenging and innovative settings.
       </motion.p>
 
       <div className='mt-20 flex flex-wrap gap-10'>

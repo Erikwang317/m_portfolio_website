@@ -56,11 +56,11 @@ import {
       icon: web,
     },
     {
-      title: "React Native Developer",
+      title: "Machine Learning Engineer",
       icon: mobile,
     },
     {
-      title: "Backend Developer",
+      title: "Software Developer",
       icon: backend,
     },
     {
@@ -294,25 +294,25 @@ import {
       source_code_link: "https://github.com/Erikwang317/ARM_NewsAnalysis",
     },
     {
-      name: "Trip Guide",
+      name: "E-Commerce",
       description:
         "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
       tags: [
         {
-          name: "nextjs",
+          name: "TypeScript",
           color: "blue-text-gradient",
         },
         {
-          name: "supabase",
+          name: "SCSS",
           color: "green-text-gradient",
         },
         {
-          name: "css",
+          name: "JavaScript",
           color: "pink-text-gradient",
         },
       ],
       image: tripguide,
-      source_code_link: "https://github.com/",
+      source_code_link: "https://github.com/Erikwang317/e-commerce",
     },
   ];
   
