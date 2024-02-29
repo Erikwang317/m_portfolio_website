@@ -35,6 +35,7 @@ import hoperun from "./company/hoperun.png";
 import brown from "./school/brown.png";
 import colgate from "./school/colgate.png";
 import wardlaw from "./school/wardlaw.png";
+import nwxl from "./school/nwxl.png"
 
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
@@ -82,6 +83,7 @@ export {
   brown,
   colgate,
   wardlaw,
+  nwxl,
   carrent,
   jobit,
   tripguide,
