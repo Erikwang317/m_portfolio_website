@@ -25,10 +25,14 @@ import {
     isolvrisk,
     amino,
     hoperun,
+    thankupet,
     brown,
     colgate,
     wardlaw,
     nwxl,
+    particle,
+    architecture,
+    perplexity,
     cornfield,
     carrent,
     jobit,
@@ -65,7 +69,7 @@ import {
       icon: backend,
     },
     {
-      title: "Content Creator",
+      title: "Team Leader",
       icon: creator,
     },
   ];
@@ -145,25 +149,32 @@ import {
       iconBg: "#383E56",
       date: "September 2023 - May 2025",
       courses: [
-        "CSCI1230 Computer Graphics", 
-        "DATA2060 Machine Learning: from Theory to Algorithms", 
-        "CSCI2470 Deep Learning",
-        "CSCI2340 Software Engineering",
+        "Machine Learning with Algorithms", 
+        "Graphics", 
+        "Deep Learning",
+        "Software Engineering",
+        "NLP",
+        "Computer Vision"
       ],
     },
     {
       school_name: "Colgate University",
-      degree: "B.A. in Computer Science and Economics with Calculus",
+      degree: "B.A. Computer Science, B.A. Economics",
       icon: colgate,
       iconBg: "#E6DEDD",
       date: "September 2019 - May 2023",
       courses: [
-        "COSC410 Machine Learning", 
-        "COSC465 Computer Networks", 
-        "COSC480 Data Visualization", 
-        "COSC202 Data Structures and Algorithms", 
-        "COSC290 Discrete Structures",
-        "COSC208 Computer Systems",
+        "Microeconomics", 
+        "Macroeconomics", 
+        "Applied Econometrics", 
+        "Environmental Economics", 
+        "Immigration Economics", 
+        "Japanese Economy",
+        "Computer Networks", 
+        "Data Visualization", 
+        "Data Structures and Algorithms", 
+        "Discrete Structures",
+        "Computer Systems"
       ],
     },
     {
@@ -188,57 +199,68 @@ import {
   
   const experiences = [
     {
-      title: "Angular Developer",
+      title: "Founding Engineer",
+      company_name: "Venream",
+      icon: thankupet, // Substitute Later
+      iconBg: "#383E56",
+      date: "June 2024 - Present",
+      points: [
+        "Engineered e-commerce platform using MedusaJS, customizing the frontend with React, achieving 95.6% customer satisfaction rate.",
+        "Administered technical team of 12 interns to enhance platform functionality, contributing to 20% increase in operational efficiency.",
+        "Remodeled landing page through code reviews and significantly boosted code reusability, efficiency, and collaboration by 30%.",
+        "Coordinated meetings to convert business ideas into actionable features, steering company direction and advancing product value."
+      ],
+    },
+    {
+      title: "Full-Stack Engineer Intern",
+      company_name: "ThankUPet",
+      icon: thankupet, // Ensure 'thankyoupet' icon is correctly imported or defined
+      iconBg: "#E6DEDD",
+      date: "May 2024 - Present",
+      points: [
+        "Led engineering efforts that developed tailored full-stack architecture, optimizing backend and frontend integration effectively.",
+        "Managed CI/CD processes with Vercel and GitHub Actions, achieving 99.9% uptime while reducing deployment errors by 50%.",
+        "Utilized Flutter framework and Supabase for smooth development of mobile app, improving user experience for over 300 customers."
+      ],
+    },
+    {
+      title: "Angular Developer Intern",
       company_name: "iSolvRisk Inc",
-      icon: isolvrisk,
+      icon: isolvrisk, 
       iconBg: "#383E56",
       date: "March 2023 - September 2023",
       points: [
-        "Crafted new features and over 10 web pages utilizing the Angular framework for the company’s mobile/web \
-        application, tailored to meet the diverse demands of 100+ customers.",
-        "Engineered a responsive navigation system for a web application using TailwindCSS, enhancing the user \
-        interface's accessibility, and contributing to a 25% increase in user engagement metrics.",
-        "Developed a robust and secure user authentication system for a web application's login page using Auth0, \
-        leading to a 30% reduction in login-related issues.",
-        "Spearheaded the development of dynamic web pages by integrating React with music visualizer and 3D models, \
-        resulting in a visually captivating user experience that significantly increased user engagement by 25%.",
+        "Engineered user-responsive Angular web application with Auth0 to notably improve UI accessibility and reduce login issues by 25%.",
+        "Crafted and integrated new features for over 10 web pages using Angular, serving 100+ customers with diverse and varied needs.",
+        "Spearheaded React-based web development project, incorporating music visualizer models to enhance user engagement by 15%."
       ],
     },
     {
-      title: "Machine Learning Engineer",
+      title: "Machine Learning Engineer Intern",
       company_name: "Amino Capital",
-      icon: amino,
+      icon: amino, 
       iconBg: "#E6DEDD",
-      date: "Jan 2021 - Feb 2022",
+      date: "May 2022 - August 2022",
       points: [
-        "Implemented an advanced data extraction and analysis pipeline to capture and process over 30,000+ financial \
-        articles from various news websites.",
-        "Utilized cutting-edge Natural Language Processing techniques and machine learning models to identify emerging \
-        investment trends, contributing significantly to a 5% increase in portfolio performance for targeted investments.",
-        "Forged WordCloud figures to visually represent the top 20 highest-frequency keywords from websites, empowering \
-        decision-makers with a succinct representation of promising investment opportunities.",
-        "Conducted beta tests for developing-stage games and demonstrated profitability in the real market to management, \
-        leading the company to achieve a revenue increase of over $16,000.",
+        "Implemented LSTM neural networks for precise investment trend prediction, achieving 10% increase in portfolio performance targets.",
+        "Utilized Latent Dirichlet Allocation for topic modeling, empowering decision-makers with representation of investment opportunities.",
+        "Established data processing pipeline, handling over 30,000 articles with NLP-driven word embeddings for detailed sentiment analysis."
       ],
     },
     {
-      title: "Software Developer",
+      title: "Software Developer Intern",
       company_name: "HopeRun Software Co",
-      icon: hoperun,
+      icon: hoperun, 
       iconBg: "#383E56",
-      date: "Jan 2022 - Jan 2023",
+      date: "May 2021 - August 2021",
       points: [
-        "Furnished coding support to more than 10 group members on JDBC and SQL to maintain the functionality and \
-        security of the company's website and data, resulting in a 30% increase in code efficiency.",
-        "Managed communication channels between the department and 300+ clients, offering technical assistance on \
-        website usage to enhance customer satisfaction.",
-        "Reviewed financial records of the department and compiled reports on the annual budget allocation, \
-        reallocating operation funds to the development departments that generate the highest return ratio.",
-        "Collaborated with group members to develop a mobile app in WeChat that significantly enhanced the user \
-        interface andsimplified access to online services, prompting an improved user experience for 1000+ customers.",
+        "Managed and optimized Maven and Spring Boot web application, significantly boosting user experience for over 1000 customers.",
+        "Optimized MySQL database structures with schemas and stored procedures, achieving substantial 30% boost in code productivity.",
+        "Leveraged Postman for validating endpoint integrity and optimizing code to strengthen application reliability and performance."
       ],
-    },
+    }
   ];
+  
   
   const testimonials = [
     {
@@ -269,9 +291,26 @@ import {
   
   const projects = [
     {
+      name: "Dynamic Environment Generation",
+      description:
+        "Pioneered inventive training solution for unconditioned data on conditional model with variational autoencoder and vector quantizer.",
+      tags: [
+        {
+          name: "Tensorflow",
+          color: "blue-text-gradient",
+        },
+        {
+          name: "Python",
+          color: "green-text-gradient",
+        },
+      ],
+      image: architecture,
+      source_code_link: "https://devpost.com/software/dynamic-environment-generation-in-classic-video-games",
+    },
+    {
       name: "Particle System",
       description:
-        "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+        "Designed and implemented over 10 particle systems utilizing OpenGL and OpenCL to handle diverse textures and complex simulations.",
       tags: [
         {
           name: "c++",
@@ -286,50 +325,29 @@ import {
           color: "pink-text-gradient",
         },
       ],
-      image: carrent,
+      image: particle,
       source_code_link: "https://github.com/Erikwang317/CSCI1230_Final_Project",
     },
     {
-      name: "News Analysis",
+      name: "Sentiment Analysis",
       description:
-        "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+        "Established data processing pipeline, handling over 30,000 articles with NLP-driven word embeddings for detailed sentiment analysis.",
       tags: [
         {
           name: "HTML",
           color: "blue-text-gradient",
         },
         {
-          name: "Python",
-          color: "green-text-gradient",
-        },
-        // {
-        //   name: "scss",
-        //   color: "pink-text-gradient",
-        // },
-      ],
-      image: jobit,
-      source_code_link: "https://github.com/Erikwang317/ARM_NewsAnalysis",
-    },
-    {
-      name: "E-Commerce",
-      description:
-        "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
-      tags: [
-        {
-          name: "TypeScript",
-          color: "blue-text-gradient",
-        },
-        {
-          name: "SCSS",
+          name: "NLP",
           color: "green-text-gradient",
         },
         {
-          name: "JavaScript",
+          name: "Cloud",
           color: "pink-text-gradient",
         },
       ],
-      image: tripguide,
-      source_code_link: "https://github.com/Erikwang317/e-commerce",
+      image: perplexity,
+      source_code_link: "https://github.com/Erikwang317/ARM_NewsAnalysis",
     },
   ];
   

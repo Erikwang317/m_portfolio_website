@@ -19,19 +19,27 @@ const App = () => {
             <About />
             <div className='relative z-0'>
                 <Education/>
+                {/* < MusicVisualizer /> */}
+                <StarsCanvas />
+            </div>
+            <div className='relative z-0'>
                 <Experience />
                 {/* < MusicVisualizer /> */}
                 <StarsCanvas />
             </div>
             <div className='relative z-0'>
-                <Tech />             
-                <UniverseCanvas />              
+                <Tech />   
+                <StarsCanvas />          
+                {/* <UniverseCanvas />               */}
             </div>
-            <Works />
             {/* <Feedbacks /> */}
             {/* <div>
                 <Draw />
             </div> */}
+            <div className='relative z-0'>
+                <Works />             
+                <StarsCanvas />
+            </div>
             <div className='relative z-0'>
                 <Contact />
                 <StarsCanvas />

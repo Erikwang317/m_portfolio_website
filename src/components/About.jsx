@@ -50,8 +50,8 @@ const About = () => {
       >
         Currently pursuing a Master's degree in Computer Science at Brown University, 
         I specialize in software engineering with a strong focus on machine learning 
-        and web development, enriched by my background in Economics with Calculus from 
-        Colgate University. My experiences at iSolvRisk and Amino Capital have honed my 
+        and web development, enriched by my background in Economics from 
+        Colgate University. My experiences across multiple roles have honed my 
         skills in algorithm design, data analysis, and developing scalable tech solutions. 
         I am eager for opportunities to apply my diverse software development skills in 
         challenging and innovative settings.

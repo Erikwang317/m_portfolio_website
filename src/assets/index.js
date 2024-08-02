@@ -31,11 +31,16 @@ import tesla from "./company/tesla.png";
 import isolvrisk from "./company/iSolvRisk.png";
 import amino from "./company/amino.png";
 import hoperun from "./company/hoperun.png";
+import thankupet from "./company/thankupet.png"
 
 import brown from "./school/brown.png";
 import colgate from "./school/colgate.png";
 import wardlaw from "./school/wardlaw.png";
 import nwxl from "./school/nwxl.png"
+
+import architecture from "./projects/architecture.png"
+import particle from "./projects/particle.png"
+import perplexity from "./projects/perplexity.png"
 
 import carrent from "./carrent.png";
 import jobit from "./jobit.png";
@@ -80,13 +85,17 @@ export {
   isolvrisk,
   amino,
   hoperun,
+  thankupet,
   brown,
   colgate,
   wardlaw,
   nwxl,
+  architecture,
+  particle,
   carrent,
   jobit,
   tripguide,
+  perplexity,
   moon,
   normal,
   mars,
